@@ -1,22 +1,22 @@
 -#  This file is app/views/movies/index.html.haml
 %h2 All Movies
 
-= form_tag movies_path, :method => :get do
+= form_tag movies_path, :id=>"ratings_form", :method => :get do
   Include:
   - @all_ratings.each do |rating|
     = rating
     = check_box_tag "ratings[#{rating}]",1, getChecked(rating)
-  = submit_tag 'Refresh', :class => 'btn btn-primary'
+  = submit_tag 'Refresh', :class => 'btn btn-primary', :id=>"ratings_submit"
 
-%table#movies.table.table-striped.col-md-12
+%table.table1#movies.table.table-striped.col-md-12 
   %thead
     %tr
-      %th{:class=>getClass('title')}= link_to "Movie Title" , movies_path(:field=>'title')
+      %th{:class=>getClass('title'), :id=>"title_header"}= link_to "Movie Title" , movies_path(:field=>'title')
       %th Rating
-      %th{:class=>getClass('release_date')}= link_to  "Release Date", movies_path(:field=>'release_date')  
+      %th{:class=>getClass('release_date'), :id=>"release_date_header"}= link_to  "Release Date", movies_path(:field=>'release_date')  
       %th More Info
-  %tbody
-    - @movies.each do |movie|
+  %tbody 
+    - @movies.each do |movie| 
       %tr
         %td= movie.title
         %td= movie.rating

@@ -7,7 +7,6 @@ module MoviesHelper
   def getClass(arg)
     if (@field == arg) 
       return "hilite"
-      
     else
       return nil
     end

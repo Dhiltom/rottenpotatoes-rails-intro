@@ -6,18 +6,21 @@ class MoviesController < ApplicationController
 
   def show
     id = params[:id] # retrieve movie ID from URI route
-    @movie = Movie.find(id) # look up movie by unique ID
+    if (Movie.exists?id)   #to handle going back after deleting id
+      @movie = Movie.find(id) # look up movie by unique ID
+    else
+      redirect_to movies_path(:field=>@field, :ratings=>@ratings)
+    end  
     # will render app/views/movies/show.<extension> by default
   end
 
   def index
-    #@movies = Movie.all
-    # @movies = Movie.all.order(params[:field])
+    
     #session.clear
     @all_ratings = Movie.all_ratings
     @field = params[:field] || session[:field]
     @all_ratings_with_hash = Hash[@all_ratings.collect { |v| [v, 1] }]
-    puts @all_ratings_with_hash
+    
     if(params[:ratings])
       @ratings = params[:ratings]
     else
@@ -25,9 +28,11 @@ class MoviesController < ApplicationController
     end
     
     if (@field != params[:field] or @ratings != params[:ratings])
+      flash.keep
       redirect_to movies_path(:field=>@field, :ratings=>@ratings)
     end
     @movies = Movie.where({rating:@ratings.keys}).order(@field);
+    
     session[:field]=@field
     session[:ratings]=@ratings
     

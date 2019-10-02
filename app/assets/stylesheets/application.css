@@ -17,3 +17,68 @@
 .hilite{
 background-color: yellow;
 }
+
+#main {
+    margin : 0;
+    padding: 0 20px 20px;
+}
+
+#ratings_submit {
+    background-color: #EDDF95;
+    border-color: transparent;
+    color: #1B3F2F;
+}
+
+#ratings_submit:hover {
+    background-color: #FFFF95;
+    border-color: transparent;
+    color: #1B3F2F;
+}
+
+a{
+    text-decoration: underline;
+    color: maroon;
+}
+
+h2{
+    color: maroon;
+    font-style: italic;
+}
+
+#ratings_form{
+    padding-bottom: 10px;
+}
+
+table.table1 {
+  background-color: #FFFFFF;
+  width: 100%;
+  text-align: center;
+}
+table.table1 td, table.table1 th {
+  border: 1px solid #FFFFFF;
+  padding: 4px 4px;
+}
+table.table1 tbody td {
+  font-size: 13px;
+  color: #24553F;
+}
+table.table1 tr:nth-child(even) {
+  background: #F9F9F7;
+}
+table.table1 thead {
+  background: #EDDF95;
+  background: -moz-linear-gradient(top, #f1e7af 0%, #eee29f 66%, #EDDF95 100%);
+  background: -webkit-linear-gradient(top, #f1e7af 0%, #eee29f 66%, #EDDF95 100%);
+  background: linear-gradient(to bottom, #f1e7af 0%, #eee29f 66%, #EDDF95 100%);
+}
+table.table1 thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #1B3F2F;
+  text-align: left;
+  border-left: 2px solid #FFFFFF;
+}
+table.table1 thead th:first-child {
+  border-left: none;
+}
+
