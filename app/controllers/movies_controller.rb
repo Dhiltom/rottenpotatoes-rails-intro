@@ -13,14 +13,23 @@ class MoviesController < ApplicationController
   def index
     #@movies = Movie.all
     # @movies = Movie.all.order(params[:field])
+    #session.clear
     @all_ratings = Movie.all_ratings
-    @ratings = 
+    @field = params[:field] || session[:field]
+    @all_ratings_with_hash = Hash[@all_ratings.collect { |v| [v, 1] }]
+    puts @all_ratings_with_hash
     if(params[:ratings])
-      @ratings = params[:ratings].keys
+      @ratings = params[:ratings]
     else
-      @ratings = @all_ratings
+      @ratings = session[:ratings] || @all_ratings_with_hash
     end
-    @movies = Movie.where({rating:@ratings}).order(params[:field]);
+    
+    if (@field != params[:field] or @ratings != params[:ratings])
+      redirect_to movies_path(:field=>@field, :ratings=>@ratings)
+    end
+    @movies = Movie.where({rating:@ratings.keys}).order(@field);
+    session[:field]=@field
+    session[:ratings]=@ratings
     
   end
 

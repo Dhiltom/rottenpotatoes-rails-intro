@@ -5,7 +5,7 @@ module MoviesHelper
   end
   
   def getClass(arg)
-    if (params[:field]==arg) 
+    if (@field == arg) 
       return "hilite"
       
     else
@@ -14,6 +14,6 @@ module MoviesHelper
   end  
   
   def getChecked(arg)
-    @ratings.include?(arg)
+    @ratings.keys.include?(arg) if(@ratings)
   end  
 end
