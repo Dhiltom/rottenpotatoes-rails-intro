@@ -12,7 +12,16 @@ class MoviesController < ApplicationController
 
   def index
     #@movies = Movie.all
-    @movies = Movie.all.order(params[:field])
+    # @movies = Movie.all.order(params[:field])
+    @all_ratings = Movie.all_ratings
+    @ratings = 
+    if(params[:ratings])
+      @ratings = params[:ratings].keys
+    else
+      @ratings = @all_ratings
+    end
+    @movies = Movie.where({rating:@ratings}).order(params[:field]);
+    
   end
 
   def new

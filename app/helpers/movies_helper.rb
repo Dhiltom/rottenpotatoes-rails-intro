@@ -12,4 +12,8 @@ module MoviesHelper
       return nil
     end
   end  
+  
+  def getChecked(arg)
+    @ratings.include?(arg)
+  end  
 end
